@@ -1,39 +1,42 @@
-# <h1 align="center"> Forge Template </h1>
+# NFT Call Options
+**A smart contract for trading equity-settled call options on NFTs**
 
-**Template repository for getting started quickly with Foundry projects**
+![Github Actions](https://github.com/tripplyons/nft-call-options/workflows/CI/badge.svg)
 
-![Github Actions](https://github.com/foundry-rs/forge-template/workflows/CI/badge.svg)
+## Basic Features
 
-## Getting Started
+- Users can offer to buy call options for any NFT in a collection
+- Users can sell covered call options against NFTs they own by accepting offers
+- The smart contract is immutable and has no ownership mechanism
 
-Click "Use this template" on [GitHub](https://github.com/foundry-rs/forge-template) to create a new repository with this repo as the initial state.
+## Details
 
-Or, if your repo already exists, run:
-```sh
-forge init
-forge build
-forge test
-```
+- User A can offer to buy a call option for an NFT
+  - User A selects a collection to buy a call on
+    - The floor price is an important metric here because any NFT from the collection can be used in this transaction
+  - User A selects a strike price (in Ether)
+  - User A selects a expiration time (in a Unix timestamp)
+  - User A selects an amount of premium to pay (in Ether)
+    - User A pays the premium upfront to prevent order spoofing
+    - Their premium is held in the contract until the offer is cancelled or the offer is accepted
+- User B can accept User A's offer by selling a covered call against an NFT that they own
+  - User B uses their NFT as collateral, and receives the premium
+    - User B's NFT can be any NFT in the collection chosen by User A
+  - The NFT is locked up until the expiration time
+    - Before the expiration time, User A can pay the strike price in for the NFT
+    - After the expiration time, User B can withdraw their NFT if it wasn't bought
 
-## Writing your first test
+## Tech Stack
 
-All you need is to `import forge-std/Test.sol` and then inherit it from your test contract. Forge-std's Test contract comes with a pre-instatiated [cheatcodes environment](https://book.getfoundry.sh/cheatcodes/), the `vm`. It also has support for [ds-test](https://book.getfoundry.sh/reference/ds-test.html)-style logs and assertions. Finally, it supports Hardhat's [console.log](https://github.com/brockelmore/forge-std/blob/master/src/console.sol). The logging functionalities require `-vvvv`.
-
-```solidity
-pragma solidity 0.8.10;
-
-import "forge-std/Test.sol";
-
-contract ContractTest is Test {
-    function testExample() public {
-        vm.roll(100);
-        console.log(1);
-        emit log("hi");
-        assertTrue(true);
-    }
-}
-```
+- Uses [Solidity v0.8.15](https://docs.soliditylang.org/en/v0.8.15/index.html) for smart contracts
+- Uses Foundry/Forge for writing tests
+  - Based on [foundry-rs/forge-template](https://github.com/foundry-rs/forge-template)
 
 ## Development
 
 This project uses [Foundry](https://getfoundry.sh). See the [book](https://book.getfoundry.sh/getting-started/installation.html) for instructions on how to install and use Foundry.
+
+- Core contracts are in `src/`
+  - Build contracts with `forge build`
+- Tests are in `test/`
+  - Run tests with `forge test`
