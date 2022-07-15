@@ -28,9 +28,16 @@
 
 ## Tech Stack
 
-- Uses [Solidity v0.8.15](https://docs.soliditylang.org/en/v0.8.15/index.html) for smart contracts
-- Uses Foundry/Forge for writing tests
-  - Based on [foundry-rs/forge-template](https://github.com/foundry-rs/forge-template)
+- Contracts
+  - [Solidity v0.8.15](https://docs.soliditylang.org/en/v0.8.15/index.html) - for writing smart contracts
+  - Foundry/Forge - for tests/builds
+    - Based on [foundry-rs/forge-template](https://github.com/foundry-rs/forge-template)
+- Web Interface (in [`interface/`](interface/))
+  - [Next.js](https://nextjs.org) - for the web framework
+  - [MUI](https://mui.com/) - for styles
+  - [Ethers.js](https://docs.ethers.io/v5/) - for interacting with the blockchain
+  - [wagmi](https://wagmi.sh/) - for accessing providers
+  - [RainbowKit](https://www.rainbowkit.com/) - for connecting wallets
 
 ## Development
 
