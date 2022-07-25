@@ -1,0 +1,50 @@
+# Roadmap
+
+- [ ] Contracts
+  - [ ] Main Contract ([`src/NFTCallOptions.sol`](src/NFTCallOptions.sol))
+    - [ ] Deployments
+      - [ ] Testnet
+      - [ ] Mainnet
+    - [x] Methods
+      - [x] `offers` - view all offers
+      - [x] `createOffer` - limit order for buying a call option
+      - [x] `cancelOffer` - cancel limit order
+      - [x] `acceptOffer` - fill limit order by selling a covered call option
+      - [x] `exercise` - exercise a call option
+      - [x] `claimCollateral` - reclaim seller's collateral if the option expired and was not exercised
+    - [x] Events
+      - [x] `OfferCreated` - emitted during `createOffer`
+      - [x] `OfferCancelled` - emitted during `cancelOffer`
+      - [x] `OfferAccepted` - emitted during `acceptOffer`
+      - [x] `OptionExercised` - emitted during `exercise`
+    - [x] Tests ([`test/NFTCallOptions.t.sol`](test/NFTCallOptions.t.sol))
+      - [x] `testCreateOfferChecks` - verify if `createOffer` reverts with invalid premium payment, expiration, or collection address
+      - [x] `testCreateOffer` - verify the state of the contract and payment after `createOffer` is successfully called
+      - [x] `testCancelOfferChecks` - verify if `cancelOffer` reverts with invalid caller or already cancelled offer
+      - [x] `testCancelOfferChecks2` - verify if `cancelOffer` reverts with accepted offer
+      - [x] `testCancelOffer` - verify the state of the contract and payment after `cancelOffer` is successfully called
+      - [x] `testAcceptOfferChecks` - verify if `acceptOffer` reverts without sending collateral or cancelled offer
+      - [x] `testAcceptOfferChecks2` - verify if `acceptOffer` reverts with already accepted offer
+      - [x] `testAcceptOffer` - verify the state of the contract and token after `acceptOffer` is successfully called
+      - [x] `testExerciseChecks` - verify if `exercise` reverts with missing payment, expired option, or invalid caller
+      - [x] `testExercise` - verify the state of the contract and token after `exercise` is successfully called
+      - [x] `testClaimCollateralChecks` - verify if `claimCollateral` reverts with unexpired option, invalid caller, or exercised option
+      - [x] `testClaimCollateral` - verify the state of the contract and token after `claimCollateral` is successfully called
+- [ ] Web Interface ([`interface/`](interface/))
+  - [x] Deployment ([https://nft-call-options.vercel.app/](https://nft-call-options.vercel.app/))
+  - [x] Theming
+  - [x] Wallet Connection
+  - [ ] Homepage/About Page
+  - [ ] Buying Interface
+    - [ ] Select Parameters
+    - [ ] Submit Offer
+    - [ ] Cancel Offer
+    - [ ] Exercise Option
+  - [ ] Selling Interface
+    - [ ] Filter Offers
+    - [ ] Select Offer
+    - [ ] Accept Offer
+    - [ ] Check Sold Options
+      - [ ] Check if an Option is Expired
+        - [ ] Claim Collateral
+      - [ ] Check if an Option is Exercised

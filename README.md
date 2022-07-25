@@ -3,15 +3,32 @@
 
 ![Github Actions](https://github.com/tripplyons/nft-call-options/workflows/CI/badge.svg)
 
-Web Interface (In Progress): [https://nft-call-options.vercel.app/](https://nft-call-options.vercel.app/)
+Web Interface (Work In Progress): [https://nft-call-options.vercel.app/](https://nft-call-options.vercel.app/)
 
-## Basic Features
+## Features
 
 - Users can offer to buy call options for any NFT in a collection
 - Users can sell covered call options against NFTs they own by accepting offers
 - The smart contract is immutable and has no ownership mechanism
 
-## Details
+## Tech Stack
+
+- Contracts
+  - [Solidity v0.8.15](https://docs.soliditylang.org/en/v0.8.15/index.html) - for writing smart contracts
+  - Foundry/Forge - for tests/builds
+    - Based on [foundry-rs/forge-template](https://github.com/foundry-rs/forge-template)
+- Web Interface (in [`interface/`](interface/))
+  - [Next.js](https://nextjs.org) - for the web framework
+  - [MUI](https://mui.com/) - for styles
+  - [Ethers.js](https://docs.ethers.io/v5/) - for interacting with the blockchain
+  - [wagmi](https://wagmi.sh/) - for accessing providers
+  - [RainbowKit](https://www.rainbowkit.com/) - for connecting wallets
+
+## Roadmap
+
+See [`docs/roadmap.md`](docs/roadmap.md) for a list of existing and planned features.
+
+## Description of Smart Contract Logic
 
 - User A can offer to buy a call option for an NFT
   - User A selects a collection to buy a call on
@@ -27,19 +44,6 @@ Web Interface (In Progress): [https://nft-call-options.vercel.app/](https://nft-
   - The NFT is locked up until the expiration time
     - Before the expiration time, User A can pay the strike price in for the NFT
     - After the expiration time, User B can withdraw their NFT if it wasn't bought
-
-## Tech Stack
-
-- Contracts
-  - [Solidity v0.8.15](https://docs.soliditylang.org/en/v0.8.15/index.html) - for writing smart contracts
-  - Foundry/Forge - for tests/builds
-    - Based on [foundry-rs/forge-template](https://github.com/foundry-rs/forge-template)
-- Web Interface (in [`interface/`](interface/))
-  - [Next.js](https://nextjs.org) - for the web framework
-  - [MUI](https://mui.com/) - for styles
-  - [Ethers.js](https://docs.ethers.io/v5/) - for interacting with the blockchain
-  - [wagmi](https://wagmi.sh/) - for accessing providers
-  - [RainbowKit](https://www.rainbowkit.com/) - for connecting wallets
 
 ## Development
 
