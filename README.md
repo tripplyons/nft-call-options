@@ -1,5 +1,5 @@
 # NFT Call Options
-**A smart contract for trading equity-settled call options on NFTs**
+**:chart_with_upwards_trend: The first NFT options trading smart contract**
 
 ![Github Actions](https://github.com/tripplyons/nft-call-options/workflows/CI/badge.svg)
 
