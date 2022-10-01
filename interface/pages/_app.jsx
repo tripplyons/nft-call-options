@@ -16,7 +16,7 @@ const clientSideEmotionCache = createEmotionCache();
 
 const { chains, provider, webSocketProvider } = configureChains(
   [
-    chain.polygon,
+    process.env.NEXT_PUBLIC_IS_TESTNET === "1" ? chain.polygonMumbai : chain.polygon,
   ],
   [
     alchemyProvider({
