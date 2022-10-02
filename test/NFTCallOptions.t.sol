@@ -147,7 +147,7 @@ contract TestNFTCallOptions is Test {
 
         vm.expectRevert(bytes("NFTCallOptions: offer already accepted"));
         nftCallOptions.cancelOffer(offerId);
-        
+
         vm.stopPrank();
     }
 
@@ -193,7 +193,7 @@ contract TestNFTCallOptions is Test {
         collection.approve(address(nftCallOptions), tokenId);
         vm.expectRevert(bytes("NFTCallOptions: offer was cancelled"));
         nftCallOptions.acceptOffer(offerId, tokenId);
-        
+
         vm.stopPrank();
     }
 

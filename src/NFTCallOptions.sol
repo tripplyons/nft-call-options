@@ -28,9 +28,7 @@ contract NFTCallOptions is ERC721TokenReceiver {
         address indexed collection
     );
 
-    event OfferCancelled(
-        uint256 indexed offerId
-    );
+    event OfferCancelled(uint256 indexed offerId);
 
     event OfferAccepted(uint256 indexed offerId, address indexed seller);
 
@@ -94,7 +92,10 @@ contract NFTCallOptions is ERC721TokenReceiver {
     }
 
     function acceptOffer(uint256 offerId, uint256 tokenId) public {
-        require(offers[offerId].isOpen == true, "NFTCallOptions: offer was cancelled");
+        require(
+            offers[offerId].isOpen == true,
+            "NFTCallOptions: offer was cancelled"
+        );
         require(
             offers[offerId].isAccepted == false,
             "NFTCallOptions: offer already accepted"
@@ -119,7 +120,10 @@ contract NFTCallOptions is ERC721TokenReceiver {
 
     // the buyer can exercise their option before expiration
     function exercise(uint256 offerId) public payable {
-        require(offers[offerId].isAccepted == true, "NFTCallOptions: offer not accepted");
+        require(
+            offers[offerId].isAccepted == true,
+            "NFTCallOptions: offer not accepted"
+        );
         require(
             offers[offerId].expiration > block.timestamp,
             "NFTCallOptions: option already expired"
